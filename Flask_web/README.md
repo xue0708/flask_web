@@ -1,15 +1,18 @@
-## Monitor_System：入侵检测系统
+## Flask_demo：
 
-#### 功能介绍：
-    1、摄像头实时监测，判断是否存在入侵信息，并将入侵画面发送给服务器；
-    2、服务器完成对入侵目标的识别；
-    3、入侵信息推送给用户，用户通过客户端进行查看；
+#### 介绍：
 
-#### 开发环境：
-    ubuntu 
-
-#### 使用的开源库：
-    OpenCV、MySQL、gRPC、Flask
-
-#### 第三方服务：
-    极光推送、阿里云短信服务 
+    config.py；配置文件；
+    
+    start.py：运行此文件，程序启动；
+    
+    requirements.txt：需要安装的依赖库；
+    
+    database.sql：数据库中的用到的数据表；
+    
+    app/routes.py：路由文件；
+    
+    app/models.py：数据库模型文件；
+    
+    app/forms.py：前端表单文件；
+    

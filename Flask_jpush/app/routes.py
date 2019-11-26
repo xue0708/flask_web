@@ -75,6 +75,25 @@ def register():
 
 
 '''
+资料编辑
+进入用户资料编辑页面，修改用户的部分资料(邮箱/手机号/所处公司)
+'''
+@app.route('/edit_profile/<name>', methods=['POST'])
+def edit_profile():
+	#查询当前用户
+	user = User.query.filter_by(username=name).first()
+	if user is not None:
+		#资料修改
+		user.email = request.form['email']
+		user.telephone = request.form['telephone']
+		user.company = request.form['company']
+		db.session.add(user)
+		db.session.commit()
+		dict0 = {"msg":"资料修改成功","code":0}
+		return jsonify(dict0)
+
+
+'''
 打开图片
 利用OpenCV作为媒介，读取图片并编码
 '''
@@ -153,25 +172,6 @@ def PicPath2(imageid):
 
 
 '''
-资料编辑
-进入用户资料编辑页面，修改用户的部分资料(邮箱/手机号/所处公司)
-'''
-@app.route('/edit_profile/<name>', methods=['POST'])
-def edit_profile():
-	#查询当前用户
-	user = User.query.filter_by(username=name).first()
-	if user is not None:
-		#资料修改
-		user.email = request.form['email']
-		user.telephone = request.form['telephone']
-		user.company = request.form['company']
-		db.session.add(user)
-		db.session.commit()
-		dict0 = {"msg":"资料修改成功","code":0}
-		return jsonify(dict0)
-
-
-'''
 消息推送
 利用极光完成的推送模块，其余进程完成时向此路由发起请求
 '''
@@ -186,21 +186,23 @@ def jpush(id):
 
 
 '''
-查看推送信息绑定的图片(一)
+推送消息绑定的接口
+点击推送消息，调用此处接口
+'''
+@app.route('/intrusion_jpush', methods=['POST','GET'])
+def intrusion_jpush():
+	id = request.args.get("id")
+	url = "http://10.171.1.4:5000/intrusion_jpush/" + id
+	dict0 = {"msg":"接口调用成功","code":0,"url":url}
+	return jsonify(dict0)
+
+
+'''
+查看推送信息绑定的图片
 返回HTML网页供手机端加载显示
 '''
 @app.route('/intrusion_jpush/<id>', methods=['POST','GET'])
-def intrusion_jpush(id):
-	return render_template('intrusion_jpush.html',id=id)
-
-
-'''
-查看推送信息绑定的图片(二)
-返回HTML网页供手机端加载显示
-'''
-@app.route('/intrusion_jpush_get', methods=['POST','GET'])
-def intrusion_jpush_get():
-	id = request.args.get("id")
+def intrusion_jpush_get(id):
 	return render_template('intrusion_jpush.html',id=id)
 
 
@@ -208,12 +210,11 @@ def intrusion_jpush_get():
 查看推送信息绑定的图片
 借由前端得到图片路径，将图片编码，返回前端显示
 '''
-@app.route('/PicPath3/<id>',methods=['GET'])
+@app.route('/PicPath3/<id>',methods=['POST','GET'])
 def PicPath3(id):
 	camera_information = Camera_Information.query.filter_by(id=id).first_or_404()
 	path = camera_information.imagepath
 	return Response(gen(OpenPic(),path), mimetype='multipart/x-mixed-replace; boundary=frame')
-
 
 
 

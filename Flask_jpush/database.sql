@@ -16,7 +16,6 @@ INSERT INTO alembic_version(version_num) VALUES ('d0a35a10500d');
 
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS camera_information;
-DROP TABLE IF EXISTS abnormaldetect;
 
 CREATE TABLE user 
 (
@@ -43,13 +42,3 @@ CREATE TABLE camera_information
 	PRIMARY KEY (id)
 )ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
-CREATE TABLE abnormaldetect
-(
-	id int(11) NOT NULL AUTO_INCREMENT,
-	cameraid int(11) DEFAULT NULL,
-	imagepath varchar(120) DEFAULT NULL,
-	videopath varchar(120) DEFAULT NULL,
-	username varchar(64) DEFAULT NULL,
-	last_time datetime DEFAULT NULL, 
-	PRIMARY KEY (id)
-);

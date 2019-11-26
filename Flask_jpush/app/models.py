@@ -30,7 +30,7 @@ class User(UserMixin, db.Model):
 
 '''
 数据库模型
-入侵信息表，包括：ID、摄像机ID、图片路径、视频路径、入侵时间
+抛物信息表，包括：ID、摄像机ID、图片路径、视频路径、入侵时间
 '''
 class Camera_Information(db.Model):
 	__tablename__ = 'camera_information'
@@ -40,19 +40,4 @@ class Camera_Information(db.Model):
 	videopath = db.Column(db.String(120))
 	username = db.Column(db.String(64))
 	last_time = db.Column(db.DateTime, default=datetime.utcnow)
-
-
-'''
-数据库模型
-检测信息表，包括：ID、摄像机ID、图片路径、视频路径、检测时间
-'''
-class Abnormaldetect(db.Model):
-	__tablename__ = 'abnormaldetect'
-	id = db.Column(db.Integer, primary_key=True)
-	cameraid = db.Column(db.String(10))
-	imagepath = db.Column(db.String(120))
-	videopath = db.Column(db.String(120))
-	username = db.Column(db.String(64))
-	last_time = db.Column(db.DateTime, default=datetime.utcnow)
-
 

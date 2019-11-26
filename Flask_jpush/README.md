@@ -16,4 +16,4 @@
     
     app/models.py：数据库模型文件；
     
-    
+    app/jpush.py：极光推送模块；

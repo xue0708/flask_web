@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h1>设置最大阈值</h1>
+	<form action="" method="post">
+		{{ form.hidden_tag() }}
+		<p>
+			{{ form.maxdx.label }}<br>
+			{{ form.maxdx(size=32) }}<br>
+			{% for error in form.maxdx.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.maxdy.label }}<br>
+			{{ form.maxdy(size=32) }}<br>
+			{% for error in form.maxdy.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.maxdz.label }}<br>
+			{{ form.maxdz(size=32) }}<br>
+			{% for error in form.maxdz.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.maxgx.label }}<br>
+			{{ form.maxgx(size=32) }}<br>
+			{% for error in form.maxgx.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.maxgy.label }}<br>
+			{{ form.maxgy(size=32) }}<br>
+			{% for error in form.maxgy.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.maxgz.label }}<br>
+			{{ form.maxgz(size=32) }}<br>
+			{% for error in form.maxgz.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.submit() }}
+		</p>
+	</form>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<table>
+		<tr valign="top">
+			<td><h1>User: {{ user.username }}</h1></td>
+			{% if user.last_seen %}<p>最近登录: {{ user.last_seen }}</p>{% endif %}
+			{% if user == current_user %}
+				<p><b><a class="three" href="{{ url_for('edit_profile') }}">系统名称编辑</a></b></p>
+				<p><b><a class="three" href="{{ url_for('CSV_download') }}">导出CSV文件</a></b></p>
+				<p><b><a class="three" href="{{ url_for('setMax') }}">设置最大阈值</a></b></p>
+			{% endif %}
+		</tr>
+	</table>
+	<hr>
+{% endblock %}

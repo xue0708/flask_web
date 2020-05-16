@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h1>导出CSV文件</h1>
+	<form action="" method="post">
+		{{ form.hidden_tag() }}
+		<p>
+			{{ form.number.label }}<br>
+			{{ form.number(size=32) }}<br>
+			{% for error in form.number.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.startTime.label }}<br>
+			{{ form.startTime(size=32) }}<br>
+			{% for error in form.startTime.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.endTime.label }}<br>
+			{{ form.endTime(size=32) }}<br>
+			{% for error in form.endTime.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.submit() }}
+		</p>
+	</form>
+{% endblock %}

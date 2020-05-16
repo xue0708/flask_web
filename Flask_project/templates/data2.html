@@ -1,0 +1,283 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<html>
+    <body>
+		<p id="demo">数据正常</p>
+        <div id="id1" class="col-md-12  col-sm-12 col-xs-12" style="height: 300px;"></div>
+		<div id="id2" class="col-md-12  col-sm-12 col-xs-12" style="height: 300px;"></div>
+        <script>
+			var hrChart1 = echarts.init(document.getElementById("id1"));
+			var hrChart2 = echarts.init(document.getElementById("id2"));
+			hrChart1.setOption(
+			{
+				title: [{
+					left: 'center',
+					text: '第二组折线图1'
+				}],
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: { 
+						type: 'cross' 
+                    }
+                },
+                legend: {
+					x: 'center',
+					y: '40px',
+					textStyle: {
+						fontSize: 13,
+					},
+					icon: 'circle',
+                    data: ['曲线1', '曲线2', '曲线3']
+                },
+                grid: [{
+					left: '3%',
+                    right: '5%',
+                    bottom: '10%',
+					top: '80px',
+                    containLabel: true
+                },
+				{
+					left: '3%',
+                    right: '5%',
+                    top: '10%',
+                    containLabel: true
+                }],
+                xAxis: [{
+                    type: 'category',
+                    data: [],
+					name: '时间',
+                }],
+                yAxis: [{ 
+                    type: 'value',
+                }],
+				toolbox: [{
+					feature: {
+						dataZoom: {
+							yAxisIndex: 'none'
+						},
+						restore: {},
+						saveAsImage: {}
+					}
+				}],
+				dataZoom: [{
+					type: 'slider',
+					show: true,
+					height: 20,
+					left: '10%',
+					right: '10%',
+					bottom: '2%',
+					start: 0,
+					end: 100
+				},
+				{
+					type: 'inside',
+					start: 0,
+					end: 100
+				}],
+                series: [{
+                    name: '曲线1',
+                    type: 'line',
+                    data: [],
+					smooth: true
+                },
+				{
+					name: '曲线2',
+					type: 'line',
+					data: [],
+					smooth: true
+				},
+				{
+					name: '曲线3',
+					type: 'line',
+					data: [],
+					smooth: true
+				}]
+            }, true);
+			
+			hrChart2.setOption(
+			{
+				title: [{
+					left: 'center',
+					text: '第二组折线图2'
+				}],
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: { 
+						type: 'cross' 
+                    }
+                },
+                legend: {
+					x: 'center',
+					y: '40px',
+					textStyle: {
+						fontSize: 13,
+					},
+					icon: 'circle',
+                    data: ['曲线4', '曲线5', '曲线6']
+                },
+                grid: [{
+					left: '3%',
+                    right: '5%',
+                    bottom: '10%',
+					top: '80px',
+                    containLabel: true
+                },
+				{
+					left: '3%',
+                    right: '5%',
+                    top: '10%',
+                    containLabel: true
+                }],
+                xAxis: [{
+                    type: 'category',
+                    data: [],
+					name: '时间',
+                }],
+                yAxis: [{ 
+                    type: 'value',
+                }],
+				toolbox: [{
+					feature: {
+						dataZoom: {
+							yAxisIndex: 'none'
+						},
+						restore: {},
+						saveAsImage: {}
+					}
+				}],
+				dataZoom: [{
+					type: 'slider',
+					show: true,
+					height: 20,
+					left: '10%',
+					right: '10%',
+					bottom: '2%',
+					start: 0,
+					end: 100
+				},
+				{
+					type: 'inside',
+					start: 0,
+					end: 100
+				}],
+                series: [{
+                    name: '曲线4',
+                    type: 'line',
+                    data: [],
+					smooth: true
+                },
+				{
+					name: '曲线5',
+					type: 'line',
+					data: [],
+					smooth: true
+				},
+				{
+					name: '曲线6',
+					type: 'line',
+					data: [],
+					smooth: true
+				}]
+            }, true);
+			
+			var x = [];
+			var y1 = [];
+			var y2 = [];
+			var y3 = [];
+			var y4 = [];
+			var y5 = [];
+			var y6 = [];
+			var warnText = "";
+			
+			var update_mychart = function (data) { 
+				hrChart1.setOption({
+					xAxis: {
+						data: x
+					},
+					series: [{
+						name: '曲线1',
+						data: y1
+					},
+					{
+						name: '曲线2',
+						data: y2
+					},
+					{
+						name: '曲线3',
+						data: y3
+					}]
+				});
+				hrChart2.setOption({
+					xAxis: {
+						data: x
+					},
+					series: [{
+						name: '曲线4',
+						data: y4
+					},
+					{
+						name: '曲线5',
+						data: y5
+					},
+					{
+						name: '曲线6',
+						data: y6
+					}]
+				});				
+			}
+			
+			var timeTicket = setInterval(function () {
+				$.ajax(
+				{
+					url: 'http://127.0.0.1:5000/choosedata/2',
+					data: {},
+					success: function(data) 
+					{
+						console.log(JSON.stringify(data))
+						x.push(data.echatX);
+						y1.push(data.echatY);
+						y2.push(data.echatY2);
+						y3.push(data.echatY3);
+						y4.push(data.echatY4);
+						y5.push(data.echatY5);
+						y6.push(data.echatY6);
+						warnText = data.warnText;
+					}
+				}).done(update_mychart);
+				
+				document.getElementById("demo").innerHTML=warnText;
+				if (y1.length > 20) {
+					x.shift();
+					y1.shift();
+					y2.shift();
+					y3.shift();
+					y4.shift();
+					y5.shift();
+					y6.shift();
+				}
+			}, 2000);
+		
+		</script>
+		
+		
+		<br>
+		<p><b><a class="three" href="choose">返回选择</a></b></p>
+		
+		<hr>
+		<h2>视频播放</h2>
+        <!-- 第一个视频流 -->
+        <div class="divbg" style="float: left; margin-right: 5px;">
+            <img class="videostyle" src="{{ url_for('video_feed', address = file.address1[0]) }}">
+        </div>
+        <!-- 第二个视频流 -->
+        <div class="divbg" style="float: left;">
+            <img class="videostyle" src="{{ url_for('video_feed', address = file.address1[1]) }}">
+        </div>
+		<br>
+		
+    </body>
+</html>
+
+{% endblock %}
+

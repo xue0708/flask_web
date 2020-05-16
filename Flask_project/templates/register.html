@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h1>注册</h1>
+	<form action="" method="post">
+		{{ form.hidden_tag() }}
+		<!-- 输入用户名-->
+		<p>
+			{{ form.username.label }}<br>
+			{{ form.username(size=32) }}<br>
+			{% for error in form.username.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<!-- 输入密码-->
+		<p>
+			{{ form.password.label }}<br>
+			{{ form.password(size=32) }}<br>
+			{% for error in form.password.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<!-- 输入确认密码-->
+		<p>
+			{{ form.password2.label }}<br>
+			{{ form.password2(size=32) }}<br>
+			{% for error in form.password2.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.submit() }}
+		</p>
+	</form>
+{% endblock %}

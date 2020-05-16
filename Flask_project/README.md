@@ -2,7 +2,11 @@
 
 #### 介绍：
 
-    config.py；配置文件；
+    MySQLExplanation.docx：导出CSV时数据库的配置以及存储路径信息；
+    
+    camera_cfg.json：摄像头RTSP数据流；
+    
+    config.py：配置文件；
     
     start.py：运行此文件，程序启动；
     

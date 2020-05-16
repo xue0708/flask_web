@@ -2,7 +2,7 @@
 
 #### 介绍：
 
-    config.py；配置文件；
+    config.py：配置文件；
     
     start.py：运行此文件，程序启动；
     

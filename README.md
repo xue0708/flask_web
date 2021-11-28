@@ -1,15 +1,30 @@
 ## Flask_demo
 
-#### 介绍：
+#### 功能介绍：
+    
+    基于Flask的web后台，实时监控摄像头信息；
 
-    Flask_app：基于flask的app后台
-    
-    Flask_web：基于flask的web后台
-    
-    Flask_jpush：基于flask的app后台 （与Flask_app相比，增加了极光推送模块，可以向绑定手机推送消息）
-    
-    Flask_history：基于flask的app后台 （与Flask_jpush相比，增加了历史信息查询）
-    
-    Flask_echarts：基于flask的web后台 （与Flask_web相比，增加了echarts绘图模块，查询数据库绘制折线图）
+    包括：
+    摄像机播放；
+    信息存储查询；
+    循环绘图显示，实时更新，文件导出；
 
-    Flask_project：基于flask的web后台 （与Flask_echarts相比，增加了循环绘图、实时更新、导出CSV文件、播放RTSP流等功能）
+#### 文件介绍：
+
+    MySQLExplanation.docx：导出CSV时数据库的配置以及存储路径信息；
+    
+    camera_cfg.json：摄像头RTSP数据流；
+    
+    config.py：配置文件；
+    
+    start.py：运行此文件，程序启动；
+    
+    requirements.txt：需要安装的依赖库；
+    
+    database.sql：数据库中的用到的数据表；
+    
+    app/routes.py：路由文件；
+    
+    app/models.py：数据库模型文件；
+    
+    app/forms.py：前端表单文件；

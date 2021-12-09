@@ -11,8 +11,6 @@
     循环绘图显示，实时更新，文件导出；
 
 #### 文件介绍：
-
-    MySQLExplanation.txt：导出CSV时数据库的配置以及存储路径信息；
     
     camera_cfg.json：摄像头RTSP数据流；
     

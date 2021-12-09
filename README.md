@@ -1,17 +1,18 @@
-## Flask_demo
+## flask_web
 
 #### 功能介绍：
     
-    基于Flask的web后台，实时监控摄像头信息；
+    基于flask的web后台，可以实时监控相机信息；
 
     包括：
-    摄像机播放；
+    登录注册；
+    相机播放；
     信息存储查询；
     循环绘图显示，实时更新，文件导出；
 
 #### 文件介绍：
 
-    MySQLExplanation.docx：导出CSV时数据库的配置以及存储路径信息；
+    MySQLExplanation.txt：导出CSV时数据库的配置以及存储路径信息；
     
     camera_cfg.json：摄像头RTSP数据流；
     

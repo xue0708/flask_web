@@ -9,7 +9,7 @@ Flask-WTF==0.14.2
 flask-redis==0.4.0
 itsdangerous==1.1.0
 Jinja2==2.11.3
-Mako==1.0.10
+Mako==1.2.2
 MarkupSafe==1.1.1
 PyMySQL==0.9.3
 python-dateutil==2.8.0
